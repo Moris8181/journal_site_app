@@ -15,7 +15,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
-        return view ('articles.index', ['articles' => $articles]);
+        return view('articles.index', ['articles' => $articles]);
     }
 
     /**
@@ -39,8 +39,8 @@ class ArticleController extends Controller
         //インスタンスの作成
         $article = new article;
         //値の保存
-        $article->title= $request->title;
-        $article->body= $request->body;
+        $article->title = $request->title;
+        $article->body = $request->body;
         //インスタンスの更新
         $article->save();
         //保存したらindexに戻る
@@ -57,7 +57,7 @@ class ArticleController extends Controller
     {
         // $idで検索したデータを表示
         $article = Article::find($id);
-        return view('articles.show', ['article'=>$article]);
+        return view('articles.show', ['article' => $article]);
     }
 
     /**
@@ -68,7 +68,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**
@@ -80,9 +81,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
 
+        $article = Article::find($id);
+        //値の保存
+        $article->title = $request->title;
+        $article->body = $request->body;
+        //インスタンスの更新
+        $article->save();
+        //保存したらindexに戻る
+        return redirect('/articles');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -91,6 +99,10 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $article = Article::find($id);
+        //データ削除
+        $article->delete();
+    //削除したらindexに戻る
+        return redirect('/articles');
     }
 }
