@@ -36,7 +36,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //インスタンスの作成
+        $article = new article;
+        //値の保存
+        $article->title= $request->title;
+        $article->body= $request->body;
+        //インスタンスの更新
+        $article->save();
+        //保存したらindexに戻る
+        return redirect('/articles');
     }
 
     /**
