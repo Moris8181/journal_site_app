@@ -21,7 +21,7 @@
             <textarea name="body" class="body">{{ old('body') }}</textarea>
         </p>
 
-        <input type="submit" value="登録">
+        <input type="submit" value="投稿">
 </body>
 
 </html>
