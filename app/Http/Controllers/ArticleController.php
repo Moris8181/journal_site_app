@@ -99,10 +99,10 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-         $article = Article::find($id);
+        $article = Article::find($id);
         //データ削除
         $article->delete();
-    //削除したらindexに戻る
+        //削除したらindexに戻る
         return redirect('/articles');
     }
 }
